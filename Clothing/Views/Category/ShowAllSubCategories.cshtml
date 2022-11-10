@@ -1,0 +1,360 @@
+﻿
+@{
+    ViewBag.Title = "ShowAllSubCategories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Clothing.Models
+@using Clothing.BL
+<style>
+    .dataTable thead .sorting:after, .dataTable thead .sorting:before, .dataTable thead .sorting_asc:after, .dataTable thead .sorting_asc_disabled:after, .dataTable thead .sorting_desc:after, .dataTable thead .sorting_desc_disabled:after {
+        display: none !important;
+    }
+</style>
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><span class="font-weight-semibold">Category</span> - All Subcategories</h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Category</a>
+                <span class="breadcrumb-item active">All Subcategories</span>
+            </div>
+
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+
+
+
+<div class="content">
+    
+    <div id="modal_theme_danger" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <form action="@Url.Action("PostDeleteSubCategory", "Category")" method="post">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-center">
+                        <h3 class="modal-title text-center">Warning</h3>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="hidden" id="Id" name="Id" />
+                        @* <h6 class="font-weight-semibold">Text in a modal</h6>*@
+                        <p>Do Your Really Want to Delete</p>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+
+                            <input type="submit" value="Delete" class="btn btn-danger">
+
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Content area -->
+    <div class="content">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12"></div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                @if (ViewBag.msgs != "")
+                {
+                    <div class="alert bg-success text-white alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                        <span class="font-weight-semibold">@ViewBag.msgs</span>
+                    </div>
+                }
+                else
+                {
+                    if (ViewBag.ermsg != "")
+                    {
+                        <div class="alert bg-danger text-white alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                            <span class="font-weight-semibold">@ViewBag.ermsg</span>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12"></div>
+        </div>
+
+        <style>
+            .first-list {
+                font-size: 17px;
+                color: #000000;
+                /*padding:15px;*/
+                text-transform: uppercase;
+            }
+
+            .second-list {
+                font-size: 15px;
+                color: #000000;
+                /*padding: 17px;*/
+                text-transform: uppercase;
+            }
+
+            .third-list {
+                font-size: 14px;
+                color: #000000;
+                /*padding: 18px;*/
+                text-transform: uppercase;
+            }
+
+            .expanded, .selected {
+                padding: 10px;
+            }
+        </style>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="@Url.Action("CsvUpload","Category")" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="UploadedFile" name="UploadedFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary">Upload Excel</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-md-6">
+                <a href="~/Content/global_assets/Sample Fi.xlsx" target="_blank"><button class="btn btn-primary" style="float:right">Download Sample file</button></a>
+</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- Default unordered list markup -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12" style="width:600px !important">
+                                <div class="tree-checkbox-hierarchical card card-body border-left-danger border-left-2 shadow-0 rounded-left-0">
+                                    <ul id="tree2" class="mb-0 ui-fancytree-source fancytree-drag-helper-img">
+                                        @{
+                                            List<Category> categorieslist = ViewBag.Category;
+                                        }
+                                        @if (categorieslist.Count > 0)
+                                        {
+                                            foreach (Category x in categorieslist)
+                                            {
+                                                List<Category> childList = new CategoriesBL().GetActiveCategoryList().Where(o => o.SubCategory == x.Id).ToList();
+                                                <li class="folder expanded">
+                                                    <a class="first-list" href="#">
+                                                        <img src="~/Content/global_assets/images/category icon.png" style="width:25px; height:25px" /> @x.Name
+                                                    </a>
+                                                    <div style="float:right;">
+                                                        @*<i class="icon-bin2 btn btn-danger btn-sm" onclick="deletecategory(@x.Id)"></i>*@
+                                                        <a href="@Url.Action("UpdateCategory","Category", new { Id = x.Id })"><i class="icon-pencil btn btn-success btn-sm"></i></a>
+                                                        <a href="@Url.Action("GetCategoryResults","Category", new { Id = x.Id })"><i class="icon-eye4 btn btn-secondary btn-sm"></i></a>
+                                                    </div>
+
+                                                    @foreach (Category y in childList)
+                                                    {
+                                                        List<Category> childchildList = new CategoriesBL().GetActiveCategoryList().Where(o => o.SubCategory == y.Id).ToList();
+
+                                                        <ul>
+                                                            <li class="expanded">
+                                                                <a class="second-list" href="@Url.Action("GetCategoryResults","Category", new { Id = y.Id })">
+                                                                    <img src="~/Content/global_assets/images/category icon.png" style="width:22px; height:22px" />@y.Name
+</a>
+                                                                <div style="float:right; margin-right:-11px">
+                                                                    <i class="icon-bin2 btn btn-danger btn-sm" onclick="deletecategory(@y.Id)"></i>
+                                                                    <a href="@Url.Action("UpdateSubCategory","Category", new { Id = y.Id })"><i class="icon-pencil btn btn-success btn-sm"></i></a>
+                                                                    <a href="@Url.Action("GetCategoryResults","Category", new { Id = y.Id })"><i class="icon-eye4 btn btn-secondary btn-sm"></i></a>
+                                                                </div>
+                                                                @foreach (Category z in childchildList)
+                                                                {
+                                                                    <ul>
+                                                                        <li class="expanded">
+                                                                            <a class="third-list" href="@Url.Action("GetCategoryResults","Category", new { Id = z.Id })">
+                                                                                <img src="~/Content/global_assets/images/category icon.png" style="width:20px; height:20px" />@z.Name
+                                                                            </a>
+
+                                                                            <div style="float:right; margin-right:-133px" class="pt-1">
+                                                                                <i class="icon-bin2 btn btn-danger btn-sm" onclick="deletecategory(@z.Id)"></i>
+                                                                                <a href="@Url.Action("UpdateSubCategory", "Category", new { Id = z.Id })"><i class="icon-pencil btn btn-success btn-sm"></i></a>
+                                                                                <a href="@Url.Action("GetCategoryResults", "Category", new { Id = z.Id })"><i class="icon-eye4 btn btn-secondary btn-sm"></i></a>
+                                                                            </div>
+                                                                            
+
+
+                                                                        </li>
+                                                                    </ul>
+                                                                }
+                                                            </li>
+                                                        </ul>
+                                                    }
+                                                </li>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li><span class="text-center" style="color: black; font-size: 14px;"> No Category in this Folder</span></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /default unordered list markup -->
+            </div>
+        </div>
+
+
+        <!-- /HTML sourced data -->
+
+    </div>
+
+    <script>
+        $.fn.extend({
+            treed: function (o) {
+
+                var openedClass = 'icon-folder-open2';
+                var closedClass = 'icon-folder';
+
+                if (typeof o != 'undefined') {
+                    if (typeof o.openedClass != 'undefined') {
+                        openedClass = o.openedClass;
+                    }
+                    if (typeof o.closedClass != 'undefined') {
+                        closedClass = o.closedClass;
+                    }
+                };
+
+                //initialize each of the top levels
+                var tree = $(this);
+                tree.addClass("tree");
+                tree.find('li').has("ul").each(function () {
+                    var branch = $(this); //li with children ul
+                    //branch.prepend("<i style='font-size: xx-large;' class='indicator " + closedClass + "'></i>");
+                    branch.addClass('branch');
+                    branch.on('click', function (e) {
+                        if (this == e.target) {
+                            var icon = $(this).children('i:first');
+                            icon.toggleClass(openedClass + " " + closedClass);
+                            $(this).children().children().toggle();
+                        }
+                    })
+                    branch.children().children().toggle();
+                });
+
+                //$('#tree2').children('li.branch').prepend("<i style='font-size: xx-large;' class='indicator " + closedClass + "'></i>");
+
+                //fire event from the dynamically added icon
+                tree.find('.branch .indicator').each(function () {
+                    $(this).on('click', function () {
+                        $(this).closest('li').click();
+                    });
+                });
+                //fire event to open branch if the li contains an anchor instead of text
+                tree.find('.branch>a').each(function () {
+                    $(this).on('click', function (e) {
+                        $(this).closest('li').click();
+                        e.preventDefault();
+                    });
+                });
+
+                //fire event to open branch if the li contains a button instead of text
+                tree.find('.branch>button').each(function () {
+                    $(this).on('click', function (e) {
+                        $(this).closest('li').click();
+                        e.preventDefault();
+                    });
+                });
+            }
+        });
+
+        //Initialization of treeviews
+
+        $('#tree2').treed({ openedClass: 'icon-folder-open2', closedClass: 'icon-folder' });
+
+        $('#tree2').find('a').click();
+    </script>
+
+
+
+    <!-- /content area -->
+    <script>
+    $(document).ready(function () {
+        $('#example').DataTable(
+            {
+                buttons: {
+                    dom: {
+                        button: {
+                            className: 'btn btn-light'
+                        }
+                    },
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            exportOptions: {
+                                columns: [0, ':visible']
+                            }
+                        }
+                    ]
+                },
+                "ajax": {
+                    //"url": '@Url.Action("AllSubCategories", "Category")',
+                    "data": {},
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "Name", "name": "Name" },
+                    { "data": "SubCategory", "name": "SubCategory" },
+                    //{ "data": "Phone", "name": "Phone" },
+                    //{ "data": "Username", "name": "Username" },
+                    //{ "data": "Password", "name": "Password" },
+                    //{ "data": "Address", "name": "Address" },
+                    { "data": "Id", "name": "Id" },
+                ],
+                'columnDefs': [
+                    {
+                        render: function (data, type, full, meta) {
+                            return '<a class="btn btn-sm  bg-secondary" href="../Category/UpdateSubCategory?Id=' + full.Id + '"> Update </a>' +
+                                ' <button class="btn btn-sm  btn-danger" onclick="deletecategory(' + full.Id + ')"> Delete </button>';
+                        },
+                        targets: 2
+                    }
+                ],
+                "serverSide": "true",
+                "order": [0, "asc"],
+                "processing": "true",
+                "language":
+                {
+                    "processing": "Processing... Please wait"
+                },
+            })
+    });
+    </script>
+
+
+
+    <script>
+        function deletecategory(Id) {
+            $("#Id").val(Id);
+            $("#modal_theme_danger").modal('show');
+        }
+    </script>
+</div>
+

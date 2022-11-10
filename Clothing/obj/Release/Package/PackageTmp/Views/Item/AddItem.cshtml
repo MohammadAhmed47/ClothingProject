@@ -1,0 +1,245 @@
+﻿
+@{
+    ViewBag.Title = "AddItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Clothing.Models ;
+@using Clothing.BL ;
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><span class="font-weight-semibold">Item</span> - Add Item</h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Item</a>
+                <span class="breadcrumb-item active">Add Item</span>
+            </div>
+
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+
+<div class="content">
+    <form action="@Url.Action("PostAddItem","Item")" class="flex-fill" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            @*<i class="icon-plus3 icon-2x text-success border-success border-3 rounded-round p-3 mb-3 mt-1"></i>*@
+                            <img src="~/Content/global_assets/images/item icon.png" class="rounded-round border-3 p-3 mt-1" style="width:100px; height:100px" />
+                            <h5 class="mb-0">Add Item</h5>
+                            <span class="d-block text-muted">All fields are required</span>
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            <input type="text" class="form-control" placeholder="ItemName" name="ItemName" required>
+                            <div class="form-control-feedback">
+                                <img src="~/Content/global_assets/images/item icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                @*<i class="icon-user-plus text-muted"></i>*@
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <select class="form-control" name="CategoriesId" required>
+                                        <option>Select Category</option>
+                                        @foreach (var x in ViewBag.categories)
+                                        {
+                                            if (x.SubCategory != 0 && x.SubCategory != null)
+                                            {
+
+                                                Category cat = new CategoriesBL().GetCategorybyId(x.SubCategory);
+                                                if (cat != null)
+                                                {
+                                                    if (cat.SubCategory != null && cat.SubCategory != 0)
+                                                    {
+                                                        Category cat2 = new CategoriesBL().GetCategorybyId((int)cat.SubCategory);
+                                                        <option value="@x.Id">@cat2.Name-@cat.Name-@x.Name</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@x.Id">@cat.Name-@x.Name</option>
+
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    </select>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/category icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-phone text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Brand" name="Brand" required>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/brand icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-user-check text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Color" name="Color" required>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/color icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-mention text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Size" name="Size" required>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/size icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-user-lock text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Fit" name="Fit" required>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/fit icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-home2 text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Material" name="Material" required>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/material icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-phone text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Notes" name="Notes" required>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/notes icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-phone text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Care Instructions" name="Careinstructions" required>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/care instructions icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-phone text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Store Item Number" name="StoreItemNumber" required>
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/store item number.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-phone text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        @*<div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-feedback form-group-feedback-right">
+                                        <input type="date" class="form-control" placeholder="Care Instructions" name="DatePurchased" required>
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-feedback form-group-feedback-right">
+                                        <input type="text" class="form-control" placeholder="Purchase Price" name="PurchasePrice" onkeypress="isInputNumber(event)" required>
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-group-feedback form-group-feedback-right">
+                                        <select class="form-control" name="LocationId" required>
+                                            <option>Select Location</option>
+                                            @foreach (var x in ViewBag.location)
+                                            {
+                                                <option value="@x.Id">@x.Name</option>
+                                            }
+                                        </select>
+                                        <div class="form-control-feedback">
+                                            <i class="icon-phone text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="file" class="form-control" placeholder="Identity Document1" name="IdentityDocument1" accept="image/*">
+                                    <div class="form-control-feedback">
+                                        <img src="~/Content/global_assets/images/image icon.png" class="rounded-round" style="width:20px; height:20px" />
+                                        @*<i class="icon-image4 text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn bg-teal-400 btn-labeled" value="Add Item">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    function isInputNumber(evt) {
+        var ch = String.fromCharCode(evt.which);
+        if (!(/[0-9]/.test(ch))) {
+            evt.preventDefault();
+        }
+    }
+</script>
+

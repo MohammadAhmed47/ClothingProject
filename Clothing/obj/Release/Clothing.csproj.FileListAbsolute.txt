@@ -1,0 +1,224 @@
+F:\Projects\Clothing\Clothing\bin\ApplicationInsights.config
+F:\Projects\Clothing\Clothing\bin\Clothing.dll.config
+F:\Projects\Clothing\Clothing\bin\Clothing.dll
+F:\Projects\Clothing\Clothing\bin\Clothing.pdb
+F:\Projects\Clothing\Clothing\bin\roslyn\csc.exe
+F:\Projects\Clothing\Clothing\bin\roslyn\csc.exe.config
+F:\Projects\Clothing\Clothing\bin\roslyn\csc.rsp
+F:\Projects\Clothing\Clothing\bin\roslyn\csi.exe
+F:\Projects\Clothing\Clothing\bin\roslyn\csi.exe.config
+F:\Projects\Clothing\Clothing\bin\roslyn\csi.rsp
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.Managed.Core.targets
+F:\Projects\Clothing\Clothing\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Projects\Clothing\Clothing\bin\roslyn\System.AppContext.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Collections.Immutable.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Console.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.IO.Compression.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.IO.FileSystem.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.IO.Pipes.AccessControl.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.IO.Pipes.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Reflection.Metadata.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Security.AccessControl.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Security.Claims.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Security.Cryptography.Encoding.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Security.Cryptography.Primitives.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Security.Principal.Windows.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.ValueTuple.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Xml.ReaderWriter.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Xml.XmlDocument.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Xml.XPath.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\System.Xml.XPath.XDocument.dll
+F:\Projects\Clothing\Clothing\bin\roslyn\vbc.exe
+F:\Projects\Clothing\Clothing\bin\roslyn\vbc.exe.config
+F:\Projects\Clothing\Clothing\bin\roslyn\vbc.rsp
+F:\Projects\Clothing\Clothing\bin\roslyn\VBCSCompiler.exe
+F:\Projects\Clothing\Clothing\bin\roslyn\VBCSCompiler.exe.config
+F:\Projects\Clothing\Clothing\bin\Antlr3.Runtime.dll
+F:\Projects\Clothing\Clothing\bin\EntityFramework.dll
+F:\Projects\Clothing\Clothing\bin\EntityFramework.SqlServer.dll
+F:\Projects\Clothing\Clothing\bin\Gma.QrCodeNet.Encoding.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.Agent.Intercept.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.DependencyCollector.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.Web.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.WindowsServer.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.ApplicationInsights.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.Security.Cookies.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.Security.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.Security.OAuth.dll
+F:\Projects\Clothing\Clothing\bin\Microsoft.Web.Infrastructure.dll
+F:\Projects\Clothing\Clothing\bin\Newtonsoft.Json.dll
+F:\Projects\Clothing\Clothing\bin\Owin.dll
+F:\Projects\Clothing\Clothing\bin\QRCoder.dll
+F:\Projects\Clothing\Clothing\bin\System.Diagnostics.DiagnosticSource.dll
+F:\Projects\Clothing\Clothing\bin\System.Web.Helpers.dll
+F:\Projects\Clothing\Clothing\bin\System.Web.Mvc.dll
+F:\Projects\Clothing\Clothing\bin\System.Web.Optimization.dll
+F:\Projects\Clothing\Clothing\bin\System.Web.Razor.dll
+F:\Projects\Clothing\Clothing\bin\System.Web.WebPages.Deployment.dll
+F:\Projects\Clothing\Clothing\bin\System.Web.WebPages.dll
+F:\Projects\Clothing\Clothing\bin\System.Web.WebPages.Razor.dll
+F:\Projects\Clothing\Clothing\bin\WebGrease.dll
+F:\Projects\Clothing\Clothing\bin\EntityFramework.xml
+F:\Projects\Clothing\Clothing\bin\EntityFramework.SqlServer.xml
+F:\Projects\Clothing\Clothing\bin\Gma.QrCodeNet.Encoding.pdb
+F:\Projects\Clothing\Clothing\bin\Gma.QrCodeNet.Encoding.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.Security.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.Security.Cookies.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.Owin.Security.OAuth.xml
+F:\Projects\Clothing\Clothing\bin\System.Web.Helpers.xml
+F:\Projects\Clothing\Clothing\bin\System.Web.Mvc.xml
+F:\Projects\Clothing\Clothing\bin\System.Web.Optimization.xml
+F:\Projects\Clothing\Clothing\bin\System.Web.Razor.xml
+F:\Projects\Clothing\Clothing\bin\System.Web.WebPages.xml
+F:\Projects\Clothing\Clothing\bin\System.Web.WebPages.Deployment.xml
+F:\Projects\Clothing\Clothing\bin\System.Web.WebPages.Razor.xml
+F:\Projects\Clothing\Clothing\bin\Newtonsoft.Json.xml
+F:\Projects\Clothing\Clothing\bin\Antlr3.Runtime.pdb
+F:\Projects\Clothing\Clothing\bin\System.Diagnostics.DiagnosticSource.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.DependencyCollector.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.WindowsServer.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.AI.Web.xml
+F:\Projects\Clothing\Clothing\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Projects\Clothing\Clothing\obj\Release\Clothing.csproj.CoreCompileInputs.cache
+F:\Projects\Clothing\Clothing\obj\Release\Clothing.csproj.CopyComplete
+F:\Projects\Clothing\Clothing\obj\Release\Clothing.dll
+F:\Projects\Clothing\Clothing\obj\Release\Clothing.pdb
+F:\Projects\Clothing\Clothing\obj\Release\Clothing.csprojAssemblyReference.cache
+F:\Projects\Clothing\Clothing\bin\EPPlus.dll
+F:\Projects\Clothing\Clothing\bin\EPPlus.xml
+E:\Hassan Project\Clothing\Clothing\bin\ApplicationInsights.config
+E:\Hassan Project\Clothing\Clothing\bin\Clothing.dll.config
+E:\Hassan Project\Clothing\Clothing\bin\Clothing.dll
+E:\Hassan Project\Clothing\Clothing\bin\Clothing.pdb
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\csc.exe
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\csc.exe.config
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\csc.rsp
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\csi.exe
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\csi.exe.config
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\csi.rsp
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.Managed.Core.targets
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.AppContext.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Collections.Immutable.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Console.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.IO.Compression.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.IO.FileSystem.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.IO.Pipes.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Reflection.Metadata.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Security.AccessControl.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Security.Claims.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Security.Principal.Windows.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.ValueTuple.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Xml.XmlDocument.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Xml.XPath.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\vbc.exe
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\vbc.exe.config
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\vbc.rsp
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\VBCSCompiler.exe
+E:\Hassan Project\Clothing\Clothing\bin\roslyn\VBCSCompiler.exe.config
+E:\Hassan Project\Clothing\Clothing\bin\Antlr3.Runtime.dll
+E:\Hassan Project\Clothing\Clothing\bin\EntityFramework.dll
+E:\Hassan Project\Clothing\Clothing\bin\EntityFramework.SqlServer.dll
+E:\Hassan Project\Clothing\Clothing\bin\EPPlus.dll
+E:\Hassan Project\Clothing\Clothing\bin\Gma.QrCodeNet.Encoding.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.DependencyCollector.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.Web.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.WindowsServer.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.ApplicationInsights.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.Security.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Web.Infrastructure.dll
+E:\Hassan Project\Clothing\Clothing\bin\Newtonsoft.Json.dll
+E:\Hassan Project\Clothing\Clothing\bin\Owin.dll
+E:\Hassan Project\Clothing\Clothing\bin\QRCoder.dll
+E:\Hassan Project\Clothing\Clothing\bin\System.Diagnostics.DiagnosticSource.dll
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.Helpers.dll
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.Mvc.dll
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.Optimization.dll
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.Razor.dll
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.WebPages.Deployment.dll
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.WebPages.dll
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.WebPages.Razor.dll
+E:\Hassan Project\Clothing\Clothing\bin\WebGrease.dll
+E:\Hassan Project\Clothing\Clothing\bin\EntityFramework.xml
+E:\Hassan Project\Clothing\Clothing\bin\EntityFramework.SqlServer.xml
+E:\Hassan Project\Clothing\Clothing\bin\EPPlus.xml
+E:\Hassan Project\Clothing\Clothing\bin\Gma.QrCodeNet.Encoding.pdb
+E:\Hassan Project\Clothing\Clothing\bin\Gma.QrCodeNet.Encoding.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.Security.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.Helpers.xml
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.Mvc.xml
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.Optimization.xml
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.Razor.xml
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.WebPages.xml
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.WebPages.Deployment.xml
+E:\Hassan Project\Clothing\Clothing\bin\System.Web.WebPages.Razor.xml
+E:\Hassan Project\Clothing\Clothing\bin\Newtonsoft.Json.xml
+E:\Hassan Project\Clothing\Clothing\bin\Antlr3.Runtime.pdb
+E:\Hassan Project\Clothing\Clothing\bin\System.Diagnostics.DiagnosticSource.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.DependencyCollector.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.WindowsServer.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.AI.Web.xml
+E:\Hassan Project\Clothing\Clothing\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Hassan Project\Clothing\Clothing\obj\Release\Clothing.csprojAssemblyReference.cache
+E:\Hassan Project\Clothing\Clothing\obj\Release\Clothing.csproj.CoreCompileInputs.cache
+E:\Hassan Project\Clothing\Clothing\obj\Release\Clothing.csproj.CopyComplete
+E:\Hassan Project\Clothing\Clothing\obj\Release\Clothing.dll
+E:\Hassan Project\Clothing\Clothing\obj\Release\Clothing.pdb

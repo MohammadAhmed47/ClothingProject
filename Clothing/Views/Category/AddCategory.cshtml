@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><span class="font-weight-semibold">Category</span> - Add Category</h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Category</a>
+                <span class="breadcrumb-item active">Add Category</span>
+            </div>
+
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+
+
+<div class="content">
+    <form action="@Url.Action("PostAddCategory","Category")" class="flex-fill" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <img src="~/Content/global_assets/images/category icon.png" class="rounded border-3 p-3 mt-1" style="width:100px; height:100px" />
+                            <h5 class="mb-0">Add Category</h5>
+                            <span class="d-block text-muted">All fields are required</span>
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            <input type="text" class="form-control text-uppercase" placeholder="Category" name="Name" required>
+                            <div class="form-control-feedback">
+                                <i class="icon-user-plus text-muted"></i>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-success btn-block" value="Add Category">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    function isInputNumber(evt) {
+        var ch = String.fromCharCode(evt.which);
+        if (!(/[0-9]/.test(ch))) {
+            evt.preventDefault();
+        }
+    }
+</script>
+

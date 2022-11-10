@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="DatabaseModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+          <ScalarProperty Name="CatPath" ColumnName="CatPath" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Infoes">
+      <EntityTypeMapping TypeName="DatabaseModel.Info">
+        <MappingFragment StoreEntitySet="Info">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
+          <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+          <ScalarProperty Name="NotesII" ColumnName="NotesII" />
+          <ScalarProperty Name="QRbarcode" ColumnName="QRbarcode" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="DatabaseModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Fit" ColumnName="Fit" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Careinstructions" ColumnName="Careinstructions" />
+          <ScalarProperty Name="StoreItemNumber" ColumnName="StoreItemNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="CategoriesId" ColumnName="CategoriesId" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="DatabaseModel.Location">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DatabaseModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddCategory" FunctionName="DatabaseModel.Store.AddCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DatabaseModel.AddCategory_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+          <ScalarProperty Name="CatPath" ColumnName="CatPath" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddInfo" FunctionName="DatabaseModel.Store.AddInfo" />
+    <FunctionImportMapping FunctionImportName="AddItem" FunctionName="DatabaseModel.Store.AddItem" />
+    <FunctionImportMapping FunctionImportName="AddLocation" FunctionName="DatabaseModel.Store.AddLocation" />
+    <FunctionImportMapping FunctionImportName="AddUser" FunctionName="DatabaseModel.Store.AddUser" />
+    <FunctionImportMapping FunctionImportName="GetCategoryById" FunctionName="DatabaseModel.Store.GetCategoryById" />
+    <FunctionImportMapping FunctionImportName="GetInfoById" FunctionName="DatabaseModel.Store.GetInfoById" />
+    <FunctionImportMapping FunctionImportName="GetItemById" FunctionName="DatabaseModel.Store.GetItemById" />
+    <FunctionImportMapping FunctionImportName="GetLocationById" FunctionName="DatabaseModel.Store.GetLocationById" />
+    <FunctionImportMapping FunctionImportName="GetUserById" FunctionName="DatabaseModel.Store.GetUserById" />
+    <FunctionImportMapping FunctionImportName="ShowAllCategories" FunctionName="DatabaseModel.Store.ShowAllCategories" />
+    <FunctionImportMapping FunctionImportName="ShowAllInfo" FunctionName="DatabaseModel.Store.ShowAllInfo" />
+    <FunctionImportMapping FunctionImportName="ShowAllItems" FunctionName="DatabaseModel.Store.ShowAllItems" />
+    <FunctionImportMapping FunctionImportName="ShowAllLocation" FunctionName="DatabaseModel.Store.ShowAllLocation" />
+    <FunctionImportMapping FunctionImportName="ShowAllUser" FunctionName="DatabaseModel.Store.ShowAllUser" />
+    <FunctionImportMapping FunctionImportName="UpdateCategories" FunctionName="DatabaseModel.Store.UpdateCategories" />
+    <FunctionImportMapping FunctionImportName="UpdateInfo" FunctionName="DatabaseModel.Store.UpdateInfo" />
+    <FunctionImportMapping FunctionImportName="UpdateItem" FunctionName="DatabaseModel.Store.UpdateItem" />
+    <FunctionImportMapping FunctionImportName="UpdateLocation" FunctionName="DatabaseModel.Store.UpdateLocation" />
+    <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="DatabaseModel.Store.UpdateUser" />
+  </EntityContainerMapping>
+</Mapping>

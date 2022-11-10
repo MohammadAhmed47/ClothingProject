@@ -1,0 +1,908 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="SubCategory" Type="int" />
+          <Property Name="CatPath" Type="varchar" MaxLength="255" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DatePurchased" Type="datetime" />
+          <Property Name="PurchasePrice" Type="float" />
+          <Property Name="NotesII" Type="varchar" MaxLength="255" />
+          <Property Name="QRbarcode" Type="varchar(max)" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="ItemId" Type="int" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand" Type="varchar" MaxLength="255" />
+          <Property Name="ItemName" Type="varchar" MaxLength="255" />
+          <Property Name="Color" Type="varchar" MaxLength="255" />
+          <Property Name="Size" Type="varchar" MaxLength="255" />
+          <Property Name="Fit" Type="varchar" MaxLength="255" />
+          <Property Name="Material" Type="varchar" MaxLength="255" />
+          <Property Name="Notes" Type="varchar" MaxLength="255" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="Careinstructions" Type="varchar" MaxLength="255" />
+          <Property Name="StoreItemNumber" Type="varchar" MaxLength="255" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CategoriesId" Type="int" />
+          <Property Name="Userid" Type="int" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Username" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="text" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="Role" Type="int" />
+        </EntityType>
+        <Association Name="FK_Categories_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CategoriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="subcategory" Type="int" Mode="In" />
+          <Parameter Name="catPath" Type="varchar" Mode="In" />
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="datepurchased" Type="datetime" Mode="In" />
+          <Parameter Name="purchaseprice" Type="float" Mode="In" />
+          <Parameter Name="notesII" Type="varchar" Mode="In" />
+          <Parameter Name="qrbarcode" Type="varchar" Mode="In" />
+          <Parameter Name="uid" Type="int" Mode="In" />
+          <Parameter Name="locationid" Type="int" Mode="In" />
+          <Parameter Name="itemid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="brand" Type="varchar" Mode="In" />
+          <Parameter Name="itemname" Type="varchar" Mode="In" />
+          <Parameter Name="color" Type="varchar" Mode="In" />
+          <Parameter Name="size" Type="varchar" Mode="In" />
+          <Parameter Name="fit" Type="varchar" Mode="In" />
+          <Parameter Name="material" Type="varchar" Mode="In" />
+          <Parameter Name="notes" Type="varchar" Mode="In" />
+          <Parameter Name="image" Type="varchar" Mode="In" />
+          <Parameter Name="careinstructions" Type="varchar" Mode="In" />
+          <Parameter Name="storeitemnumber" Type="varchar" Mode="In" />
+          <Parameter Name="categoriesid" Type="int" Mode="In" />
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="role" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetCategoryById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetInfoById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetItemById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetLocationById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetUserById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ShowAllCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ShowAllInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ShowAllItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ShowAllLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ShowAllUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="subcategory" Type="int" Mode="In" />
+          <Parameter Name="catpath" Type="varchar" Mode="In" />
+          <Parameter Name="isActive" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="datepurchased" Type="datetime" Mode="In" />
+          <Parameter Name="purchaseprice" Type="float" Mode="In" />
+          <Parameter Name="notesII" Type="varchar" Mode="In" />
+          <Parameter Name="qrbarcode" Type="varchar" Mode="In" />
+          <Parameter Name="uid" Type="int" Mode="In" />
+          <Parameter Name="locationid" Type="int" Mode="In" />
+          <Parameter Name="itemid" Type="int" Mode="In" />
+          <Parameter Name="isactive" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="brand" Type="varchar" Mode="In" />
+          <Parameter Name="itemname" Type="varchar" Mode="In" />
+          <Parameter Name="color" Type="varchar" Mode="In" />
+          <Parameter Name="size" Type="varchar" Mode="In" />
+          <Parameter Name="fit" Type="varchar" Mode="In" />
+          <Parameter Name="material" Type="varchar" Mode="In" />
+          <Parameter Name="notes" Type="varchar" Mode="In" />
+          <Parameter Name="image" Type="varchar" Mode="In" />
+          <Parameter Name="careinstructions" Type="varchar" Mode="In" />
+          <Parameter Name="storeitemnumber" Type="varchar" Mode="In" />
+          <Parameter Name="categoriesid" Type="int" Mode="In" />
+          <Parameter Name="isactive" Type="int" Mode="In" />
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="isActive" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="role" Type="int" Mode="In" />
+          <Parameter Name="isActive" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info" EntityType="Self.Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Categories_User" Association="Self.FK_Categories_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_Item" Association="Self.FK_Info_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_Location" Association="Self.FK_Info_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_User" Association="Self.FK_Info_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Categories" Association="Self.FK_Item_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_User" Association="Self.FK_Item_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_User" Association="Self.FK_Location_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SubCategory" Type="Int32" />
+          <Property Name="CatPath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Categories_User" FromRole="Categories" ToRole="User" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Item_Categories" FromRole="Categories" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatePurchased" Type="DateTime" Precision="3" />
+          <Property Name="PurchasePrice" Type="Double" />
+          <Property Name="NotesII" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="QRbarcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="User_Id" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Info_Item" FromRole="Info" ToRole="Item" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Info_Location" FromRole="Info" ToRole="Location" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Info_User" FromRole="Info" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Size" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Fit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Material" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Careinstructions" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="StoreItemNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CategoriesId" Type="Int32" />
+          <Property Name="Userid" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Item_Categories" FromRole="Item" ToRole="Categories" />
+          <NavigationProperty Name="Infoes" Relationship="Self.FK_Info_Item" FromRole="Item" ToRole="Info" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Item_User" FromRole="Item" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Infoes" Relationship="Self.FK_Info_Location" FromRole="Location" ToRole="Info" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Location_User" FromRole="Location" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Role" Type="Int32" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Categories_User" FromRole="User" ToRole="Categories" />
+          <NavigationProperty Name="Infoes" Relationship="Self.FK_Info_User" FromRole="User" ToRole="Info" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Item_User" FromRole="User" ToRole="Item" />
+          <NavigationProperty Name="Locations" Relationship="Self.FK_Location_User" FromRole="User" ToRole="Location" />
+        </EntityType>
+        <Association Name="FK_Categories_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Categories">
+          <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CategoriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Infoes" EntityType="Self.Info" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Categories_User" Association="Self.FK_Categories_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Categories" Association="Self.FK_Item_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_Item" Association="Self.FK_Info_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Info" EntitySet="Infoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_Location" Association="Self.FK_Info_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Info" EntitySet="Infoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_User" Association="Self.FK_Info_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Info" EntitySet="Infoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_User" Association="Self.FK_Item_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_User" Association="Self.FK_Location_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <FunctionImport Name="AddCategory" ReturnType="Collection(DatabaseModel.AddCategory_Result)">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="subcategory" Mode="In" Type="Int32" />
+            <Parameter Name="catPath" Mode="In" Type="String" />
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddInfo">
+            <Parameter Name="datepurchased" Mode="In" Type="DateTime" />
+            <Parameter Name="purchaseprice" Mode="In" Type="Double" />
+            <Parameter Name="notesII" Mode="In" Type="String" />
+            <Parameter Name="qrbarcode" Mode="In" Type="String" />
+            <Parameter Name="uid" Mode="In" Type="Int32" />
+            <Parameter Name="locationid" Mode="In" Type="Int32" />
+            <Parameter Name="itemid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddItem">
+            <Parameter Name="brand" Mode="In" Type="String" />
+            <Parameter Name="itemname" Mode="In" Type="String" />
+            <Parameter Name="color" Mode="In" Type="String" />
+            <Parameter Name="size" Mode="In" Type="String" />
+            <Parameter Name="fit" Mode="In" Type="String" />
+            <Parameter Name="material" Mode="In" Type="String" />
+            <Parameter Name="notes" Mode="In" Type="String" />
+            <Parameter Name="image" Mode="In" Type="String" />
+            <Parameter Name="careinstructions" Mode="In" Type="String" />
+            <Parameter Name="storeitemnumber" Mode="In" Type="String" />
+            <Parameter Name="categoriesid" Mode="In" Type="Int32" />
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddLocation">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddUser">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCategoryById" EntitySet="Categories" ReturnType="Collection(DatabaseModel.Category)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetInfoById" EntitySet="Infoes" ReturnType="Collection(DatabaseModel.Info)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetItemById" EntitySet="Items" ReturnType="Collection(DatabaseModel.Item)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetLocationById" EntitySet="Locations" ReturnType="Collection(DatabaseModel.Location)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserById" EntitySet="Users" ReturnType="Collection(DatabaseModel.User)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ShowAllCategories" EntitySet="Categories" ReturnType="Collection(DatabaseModel.Category)" />
+          <FunctionImport Name="ShowAllInfo" EntitySet="Infoes" ReturnType="Collection(DatabaseModel.Info)" />
+          <FunctionImport Name="ShowAllItems" EntitySet="Items" ReturnType="Collection(DatabaseModel.Item)" />
+          <FunctionImport Name="ShowAllLocation" EntitySet="Locations" ReturnType="Collection(DatabaseModel.Location)" />
+          <FunctionImport Name="ShowAllUser" EntitySet="Users" ReturnType="Collection(DatabaseModel.User)" />
+          <FunctionImport Name="UpdateCategories">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="subcategory" Mode="In" Type="Int32" />
+            <Parameter Name="catpath" Mode="In" Type="String" />
+            <Parameter Name="isActive" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateInfo">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="datepurchased" Mode="In" Type="DateTime" />
+            <Parameter Name="purchaseprice" Mode="In" Type="Double" />
+            <Parameter Name="notesII" Mode="In" Type="String" />
+            <Parameter Name="qrbarcode" Mode="In" Type="String" />
+            <Parameter Name="uid" Mode="In" Type="Int32" />
+            <Parameter Name="locationid" Mode="In" Type="Int32" />
+            <Parameter Name="itemid" Mode="In" Type="Int32" />
+            <Parameter Name="isactive" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateItem">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="brand" Mode="In" Type="String" />
+            <Parameter Name="itemname" Mode="In" Type="String" />
+            <Parameter Name="color" Mode="In" Type="String" />
+            <Parameter Name="size" Mode="In" Type="String" />
+            <Parameter Name="fit" Mode="In" Type="String" />
+            <Parameter Name="material" Mode="In" Type="String" />
+            <Parameter Name="notes" Mode="In" Type="String" />
+            <Parameter Name="image" Mode="In" Type="String" />
+            <Parameter Name="careinstructions" Mode="In" Type="String" />
+            <Parameter Name="storeitemnumber" Mode="In" Type="String" />
+            <Parameter Name="categoriesid" Mode="In" Type="Int32" />
+            <Parameter Name="isactive" Mode="In" Type="Int32" />
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateLocation">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="isActive" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateUser">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="Int32" />
+            <Parameter Name="isActive" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="AddCategory_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="SubCategory" Nullable="true" />
+          <Property Type="String" Name="CatPath" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCategoryById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="SubCategory" Nullable="true" />
+          <Property Type="String" Name="CatPath" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetInfoById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="DateTime" Name="DatePurchased" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="PurchasePrice" Nullable="true" />
+          <Property Type="String" Name="NotesII" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="QRbarcode" Nullable="true" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="User_Id" Nullable="true" />
+          <Property Type="Int32" Name="LocationId" Nullable="true" />
+          <Property Type="Int32" Name="ItemId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetItemById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Brand" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Fit" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Material" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Notes" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="Careinstructions" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="StoreItemNumber" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CategoriesId" Nullable="true" />
+          <Property Type="Int32" Name="Userid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetLocationById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="UserID" Nullable="true" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetUserById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Role" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ShowAllCategories_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="SubCategory" Nullable="true" />
+          <Property Type="String" Name="CatPath" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ShowAllInfo_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="DateTime" Name="DatePurchased" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="PurchasePrice" Nullable="true" />
+          <Property Type="String" Name="NotesII" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="QRbarcode" Nullable="true" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="User_Id" Nullable="true" />
+          <Property Type="Int32" Name="LocationId" Nullable="true" />
+          <Property Type="Int32" Name="ItemId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ShowAllItems_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Brand" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Fit" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Material" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Notes" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="Careinstructions" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="StoreItemNumber" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CategoriesId" Nullable="true" />
+          <Property Type="Int32" Name="Userid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ShowAllLocation_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="UserID" Nullable="true" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="ShowAllUser_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Role" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DatabaseModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="CatPath" ColumnName="CatPath" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infoes">
+            <EntityTypeMapping TypeName="DatabaseModel.Info">
+              <MappingFragment StoreEntitySet="Info">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="NotesII" ColumnName="NotesII" />
+                <ScalarProperty Name="QRbarcode" ColumnName="QRbarcode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="DatabaseModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Fit" ColumnName="Fit" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Careinstructions" ColumnName="Careinstructions" />
+                <ScalarProperty Name="StoreItemNumber" ColumnName="StoreItemNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CategoriesId" ColumnName="CategoriesId" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="DatabaseModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DatabaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddCategory" FunctionName="DatabaseModel.Store.AddCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DatabaseModel.AddCategory_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="CatPath" ColumnName="CatPath" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddInfo" FunctionName="DatabaseModel.Store.AddInfo" />
+          <FunctionImportMapping FunctionImportName="AddItem" FunctionName="DatabaseModel.Store.AddItem" />
+          <FunctionImportMapping FunctionImportName="AddLocation" FunctionName="DatabaseModel.Store.AddLocation" />
+          <FunctionImportMapping FunctionImportName="AddUser" FunctionName="DatabaseModel.Store.AddUser" />
+          <FunctionImportMapping FunctionImportName="GetCategoryById" FunctionName="DatabaseModel.Store.GetCategoryById">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetInfoById" FunctionName="DatabaseModel.Store.GetInfoById">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetItemById" FunctionName="DatabaseModel.Store.GetItemById">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetLocationById" FunctionName="DatabaseModel.Store.GetLocationById">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserById" FunctionName="DatabaseModel.Store.GetUserById">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowAllCategories" FunctionName="DatabaseModel.Store.ShowAllCategories">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowAllInfo" FunctionName="DatabaseModel.Store.ShowAllInfo">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowAllItems" FunctionName="DatabaseModel.Store.ShowAllItems">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowAllLocation" FunctionName="DatabaseModel.Store.ShowAllLocation">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowAllUser" FunctionName="DatabaseModel.Store.ShowAllUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateCategories" FunctionName="DatabaseModel.Store.UpdateCategories" />
+          <FunctionImportMapping FunctionImportName="UpdateInfo" FunctionName="DatabaseModel.Store.UpdateInfo" />
+          <FunctionImportMapping FunctionImportName="UpdateItem" FunctionName="DatabaseModel.Store.UpdateItem" />
+          <FunctionImportMapping FunctionImportName="UpdateLocation" FunctionName="DatabaseModel.Store.UpdateLocation" />
+          <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="DatabaseModel.Store.UpdateUser" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

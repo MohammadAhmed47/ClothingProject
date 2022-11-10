@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    //Get the current claims principal
+    var identity = (System.Security.Claims.ClaimsPrincipal)System.Threading.Thread.CurrentPrincipal;
+
+    var id = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Sid)
+    .Select(c => c.Value).SingleOrDefault();
+
+    Clothing.Models.User user = new Clothing.BL.UserBL().GetUserbyId(Convert.ToInt32(id));
+}
+
+<!-- Content area -->
+<div class="content">
+
+    <!-- Main charts -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <style>
+                        .anc{
+                            color:#ffffff !important;
+                        }
+                    </style>
+                    <!-- Available hours -->
+                    <div class="card text-center bg-primary">
+                        <div class="card-body p-5 m-5">
+                            @*<a href="http://localhost:63969/Item/AllLocatedItems" class="anc">*@
+                            <a href="https://clothingproject.nodlays.com/Item/AllLocatedItems" class="anc">
+                                <i class="icon-cabinet icon-3x text-white text-shadow-dark" style="width:76px;"></i>
+                            </a>
+                            <!-- Progress counter -->
+                            @*<a href="http://localhost:63969/Item/AllLocatedItems" class="anc">*@
+                            <a href="https://clothingproject.nodlays.com/Item/AllLocatedItems" class="anc">
+                                <h2 class="pt-1" style="font-size:30px;"><span style="font-size:15px;">Total Items -</span><br /> @ViewBag.item</h2>
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <!-- /available hours -->
+
+                </div>
+
+                <div class="col-sm-6">
+
+                    <!-- Productivity goal -->
+                    <div class="card text-center bg-primary">
+                        <div class="card-body p-5 m-5">
+                            <a href="http://localhost:63969/Location/ShowAllLocations" class="anc">
+                                <i class="icon-three-bars icon-3x text-white text-shadow-dark" style="width:76px;"></i>
+                            </a>
+                            <!-- Progress counter -->
+                            <a href="http://localhost:63969/Location/ShowAllLocations" class="anc">
+                                <h2 class="pt-1" style="font-size:30px;"><span style="font-size:15px;">Total Locations -</span><br /> @ViewBag.location</h2>
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- /productivity goal -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /main charts -->
+
+</div>
+<!-- /content area -->

@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "UpdateLocation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><span class="font-weight-semibold">Location</span> - Update Location</h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Location</a>
+                <span class="breadcrumb-item active">Update Location</span>
+            </div>
+
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+
+<div class="content">
+    @model Clothing.Models.Location
+    @{
+        //Get the current claims principal
+        var identity = (System.Security.Claims.ClaimsPrincipal)System.Threading.Thread.CurrentPrincipal;
+
+        var id = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Sid)
+        .Select(c => c.Value).SingleOrDefault();
+
+        Clothing.Models.User user = new Clothing.BL.UserBL().GetUserbyId(Convert.ToInt32(id));
+    }
+
+    <form action="@Url.Action("PostUpdateLocation","Location")" class="flex-fill" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <i class="icon-plus3 icon-2x text-success border-success border-3 rounded-round p-3 mb-3 mt-1"></i>
+                            <h5 class="mb-0">Update Location</h5>
+                        </div>
+                        <input type="hidden" name="Id" value="@Model.Id" />
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            <input type="text" class="form-control" placeholder="Name" name="Name" value="@Model.Name" required>
+                            <div class="form-control-feedback">
+                                <i class="icon-user-plus text-muted"></i>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn bg-teal-400 btn-labeled" value="Update Location" style="background:#51a49a">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function isInputNumber(evt) {
+            var ch = String.fromCharCode(evt.which);
+            if (!(/[0-9]/.test(ch))) {
+                evt.preventDefault();
+            }
+        }
+    </script>
+</div>
+

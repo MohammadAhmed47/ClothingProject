@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    //Get the current claims principal
+    var identity = (System.Security.Claims.ClaimsPrincipal)System.Threading.Thread.CurrentPrincipal;
+
+    var id = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Sid)
+    .Select(c => c.Value).SingleOrDefault();
+
+    Clothing.Models.User user = new Clothing.BL.UserBL().GetUserbyId(Convert.ToInt32(id));
+}
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><span class="font-weight-semibold">User</span> - Add User</h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> User</a>
+                <span class="breadcrumb-item active">Add User</span>
+            </div>
+
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            @if (ViewBag.ermsg != "")
+            {
+                <div class="alert bg-danger text-white alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                    <span class="font-weight-semibold">@ViewBag.ermsg</span>
+                </div>
+            }
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <form action="@Url.Action("PostAddUser","Admin")" class="flex-fill" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            @*<i class="icon-users icon-2x text-dark border-dark border-3 rounded-round p-3 mb-3 mt-1"></i>*@
+                            <img src="~/Content/global_assets/images/user icon.png" class="rounded-round border-3 p-3 mt-1" style="width:100px; height:100px" />
+                            <h5 class="mb-0">Add User</h5>
+                            <span class="d-block text-muted">All fields are required</span>
+                        </div>
+
+                        <div class="form-group form-group-feedback form-group-feedback-right">
+                            <input type="text" class="form-control" placeholder="Choose username" name="Username" required>
+                            <div class="form-control-feedback">
+                                @*<img src="~/Content/global_assets/images/item icon.png" class="rounded-round" style="width:20px; height:20px" />*@
+                                <i class="icon-user-plus text-muted"></i>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Your Name" name="Name" required>
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user-check text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="email" class="form-control" placeholder="Your email" name="Email" required>
+                                    <div class="form-control-feedback">
+                                        <i class="icon-mention text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="password" class="form-control" placeholder="Create password" name="Password" required>
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user-lock text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Address" name="Address">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-home2 text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @if (user.Role == 1)
+                        {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <select class="form-control" name="Role" required>
+                                        <option value="">Select Role</option>
+                                        <option value="1">Admin</option>
+                                        <option value="2">User</option>
+                                    </select>
+                                    <div class="form-control-feedback">
+                                        @*<i class="icon-phone text-muted"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-feedback form-group-feedback-right">
+                                    <input type="text" class="form-control" placeholder="Phone" name="Phone" onkeypress="isInputNumber(event)">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-phone text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-group-feedback form-group-feedback-right">
+                                        <input type="file" class="form-control" placeholder="Identity Document1" name="IdentityDocument1" accept="image/*">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-image4 text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        <input type="submit" class="btn bg-teal-400 btn-labeled" value="Add User">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    function isInputNumber(evt) {
+        var ch = String.fromCharCode(evt.which);
+        if (!(/[0-9]/.test(ch))) {
+            evt.preventDefault();
+        }
+    }
+</script>
+

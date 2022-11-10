@@ -1,0 +1,339 @@
+﻿
+@{
+    ViewBag.Title = "ShowAllItems";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .dataTable thead .sorting:after, .dataTable thead .sorting:before, .dataTable thead .sorting_asc:after, .dataTable thead .sorting_asc_disabled:after, .dataTable thead .sorting_desc:after, .dataTable thead .sorting_desc_disabled:after {
+        display: none !important;
+    }
+</style>
+
+<!--Assign Location-->
+<div id="modal_theme_primary" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <form action="@Url.Action("AssignLocation", "Item")" method="post">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-center">
+                    <h3 class="modal-title text-center">Assign Location</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" id="sId" name="sId" />
+                    @*<input type="text" class="form-control" name="PurchasePrice" placeholder="PurchasePrice" onkeypress="isInputNumber(event)" required /><br />*@
+                    <input type="text" class="form-control" name="PurchasePrice" placeholder="PurchasePrice" required /><br />
+                    <input type="text" class="form-control" name="NotesII" placeholder="Notes_II" required /><br />
+                    <input type="date" placeholder="dd-mm-yyyy" class="form-control" name="DatePurchased" required /><br>
+                    <select class="form-control" name="LocationId" required>
+                        <option value="">Select Location</option>
+                        @foreach (var x in ViewBag.location)
+                        {
+                            <option value="@x.Id">@x.Name</option>
+                        }
+                    </select>
+                    <br /><br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+
+                        <input type="submit" value="Assign" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Delete Modal-->
+<div id="modal_theme_danger" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <form action="@Url.Action("PostDeleteItem", "Item")" method="post">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-center">
+                    <h3 class="modal-title text-center">Warning</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" id="Id" name="Id" />
+                    @* <h6 class="font-weight-semibold">Text in a modal</h6>*@
+                    <p>Do Your Really Want to Delete</p>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><span class="font-weight-semibold">Item</span> - All Item</h4>
+            <a href="" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Item</a>
+                <span class="breadcrumb-item active">All Item</span>
+            </div>
+
+            <a href="" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+</div>
+
+
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row pb-3">
+        <div class="col-lg-3">
+            <a href="@Url.Action("AddItem","Item")"><button class="btn btn-success">Add New Item</button></a>
+        </div>
+        <div class="col-lg-6"></div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12"></div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            @if (ViewBag.msgs != "")
+            {
+                <div class="alert bg-success text-white alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                    <span class="font-weight-semibold">@ViewBag.msgs</span>
+                </div>
+            }
+            else
+            {
+                if (ViewBag.ermsg != "")
+                {
+                    <div class="alert bg-danger text-white alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                        <span class="font-weight-semibold">@ViewBag.ermsg</span>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12"></div>
+    </div>
+    <!-- HTML sourced data -->
+    <div class="card">
+
+        <table class="table datatable-html text-center" id="example">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Brand</th>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Fit</th>
+                    <th>Notes</th>
+                    <th>Material</th>
+                    <th>Image</th>
+                    <th>Care Instructions</th>
+                    <th>Store Item Number</th>
+                    <th>Username</th>
+                    <th class="text-center" colspan="2">Actions</th>
+                </tr>
+            </thead>
+            @*<tbody>
+                    @foreach (var x in ViewBag.user)
+                    {
+                    <tr>
+                        <td class="text-capitalize" value="@x.Id">@x.Name</td>
+                        <td class="text-capitalize">@x.Email</td>
+                        <td class="text-capitalize">@x.Phone</td>
+                        <td class="text-capitalize">@x.Username</td>
+                        <td class="text-capitalize">@x.Password</td>
+                        <td class="text-capitalize">@x.Balance</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm  btn-danger" onclick="deleteuser(@x.Id)"> Delete </button>
+                        </td>
+                        <td class="text-center">
+                            <form action="@Url.Action("UpdateUser", "Admin")" method="post">
+                                <input type="submit" value="Update" class="btn btn-success btn-block">
+                                <input type="hidden" name="Id" value="@x.Id" />
+                            </form>
+                        </td>
+                    </tr>
+                    }
+                </tbody>*@
+        </table>
+    </div>
+    <!-- /HTML sourced data -->
+
+</div>
+<!-- /content area -->
+@*<script>
+$(document).ready(function () {
+        $('#example').DataTable(
+            {
+                dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
+                //bFilter: false,
+                language: {
+                    search: '<span>Filter:</span> _INPUT_',
+                    searchPlaceholder: 'Type to filter...',
+                    lengthMenu: '<span>Show:</span> _MENU_',
+                    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' },
+                    info: 'Showing _END_ of _END_ entries',
+                    infoEmpty: 'Showing 0 of 0 entries'
+                },
+
+                "ajax": {
+                    "url": '@Url.Action("AllItem", "Item")',
+                    "data": {},
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "CategoriesId", "name": "CategoriesId" },
+                    { "data": "Brand", "name": "Brand" },
+                    { "data": "ItemName", "name": "ItemName" },
+                    { "data": "Color", "name": "Color" },
+                    { "data": "Size", "name": "Size" },
+                    { "data": "Fit", "name": "Fit" },
+                    { "data": "Notes", "name": "Notes" },
+                    { "data": "Material", "name": "Material" },
+                    { "data": "Image", "name": "Image" },
+                    { "data": "Careinstructions", "name": "Careinstructions" },
+                    { "data": "StoreItemNumber", "name": "StoreItemNumber" },
+                    { "data": "User_Id", "name": "User_Id" },
+                    { "data": "Id", "name": "Id" },
+                ],
+                'columnDefs': [
+                    {
+                        render: function (data, type, full, meta) {
+                            if (full.PurchasePrice != null) {
+                                return '<a class="btn btn-sm  bg-secondary" href="../Item/UpdateItem?Id=' + full.Id + '"> Update </a> ' +
+                                    ' <button class="btn btn-sm  btn-danger" onclick="deleteitem(' + full.Id + ')"> Delete </button> ' +
+                                    ' <button class="btn btn-sm  btn-primary" onclick="AddLocation(' + full.Id + ')"> Assign Location </button>' +
+                                    ' <button class="btn btn-sm  btn-success"> Location Assigned</button>';
+                            }
+                            else {
+                                return '<a class="btn btn-sm  bg-secondary" href="../Item/UpdateItem?Id=' + full.Id + '"> Update </a> ' +
+                                    ' <button class="btn btn-sm  btn-danger" onclick="deleteitem(' + full.Id + ')"> Delete </button> ' +
+                                    ' <button class="btn btn-sm  btn-primary" onclick="AddLocation(' + full.Id + ')"> Assign Location </button>';
+                            }
+
+                        },
+                        targets: 12
+                    }
+                ],
+                "serverSide": "true",
+                "order": [0, "asc"],
+                "processing": "true",
+                "language":
+                {
+                    "processing": "Processing... Please wait"
+                },
+            })
+    //}
+});
+</script>*@
+
+<script>
+    $(document).ready(function () {
+            $('#example').DataTable(
+                {
+                    buttons: {
+                        dom: {
+                            button: {
+                                className: 'btn btn-light'
+                            }
+                        },
+                        buttons: [
+                            {
+                                extend: 'csv',
+                                exportOptions: {
+                                    columns: [0, ':visible']
+                                }
+                            }
+                        ]
+                    },
+                    "ajax": {
+                        "url": '@Url.Action("AllItem", "Item")',
+                        "data": {},
+                        "type": "POST",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "CategoriesId", "name": "CategoriesId" },
+                        { "data": "Brand", "name": "Brand" },
+                        { "data": "ItemName", "name": "ItemName" },
+                        { "data": "Color", "name": "Color" },
+                        { "data": "Size", "name": "Size" },
+                        { "data": "Fit", "name": "Fit" },
+                        { "data": "Notes", "name": "Notes" },
+                        { "data": "Material", "name": "Material" },
+                        { "data": "Image", "name": "Image" },
+                        { "data": "Careinstructions", "name": "Careinstructions" },
+                        { "data": "StoreItemNumber", "name": "StoreItemNumber" },
+                        { "data": "User_Id", "name": "User_Id" },
+                        { "data": "Id", "name": "Id" },
+                    ],
+                    'columnDefs': [
+                        {
+                            render: function (data, type, full, meta) {
+                                if (full.PurchasePrice != null) {
+                                    return '<a class="btn btn-sm  bg-secondary" href="../Item/UpdateItem?Id=' + full.Id + '"> Update </a> ' +
+                                        ' <button class="btn btn-sm  btn-danger" onclick="deleteitem(' + full.Id + ')"> Delete </button> ' +
+                                        ' <button class="btn btn-sm  btn-primary" onclick="AddLocation(' + full.Id + ')"> Assign Location </button>' +
+                                        ' <button class="btn btn-sm  btn-success"> Location Assigned</button>';
+                                }
+                                else {
+                                    return '<a class="btn btn-sm  bg-secondary" href="../Item/UpdateItem?Id=' + full.Id + '"> Update </a> ' +
+                                        ' <button class="btn btn-sm  btn-danger" onclick="deleteitem(' + full.Id + ')"> Delete </button> ' +
+                                        ' <button class="btn btn-sm  btn-primary" onclick="AddLocation(' + full.Id + ')"> Assign Location </button>';
+                                }
+
+                            },
+                            targets: 12
+                        }
+                    ],
+                    "serverSide": "true",
+                    "order": [0, "asc"],
+                    "processing": "true",
+                    "language":
+                    {
+                        "processing": "Processing... Please wait"
+                    },
+                })
+        //}
+    });
+</script>
+
+<script>
+    function deleteitem(Id) {
+        $("#Id").val(Id);
+        $("#modal_theme_danger").modal('show');
+    }
+</script>
+
+<script>
+    function AddLocation(Id) {
+        $("#sId").val(Id);
+        $("#modal_theme_primary").modal('show');
+    }
+</script>
+
+
+<script>
+    function isInputNumber(evt) {
+        var ch = String.fromCharCode(evt.which);
+        if (!(/[0-9]/.test(ch))) {
+            evt.preventDefault();
+        }
+    }
+</script>
